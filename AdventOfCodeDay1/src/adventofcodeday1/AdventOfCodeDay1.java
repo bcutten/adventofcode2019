@@ -21,7 +21,7 @@ import java.util.Scanner;
 
 public class AdventOfCodeDay1 {
 
-    public static void main(String[] args) {
+    public static void part1(){
         try {
             File f = new File("src\\adventofcodeday1\\input");
             Scanner s = new Scanner(f);
@@ -38,6 +38,35 @@ public class AdventOfCodeDay1 {
         } catch (FileNotFoundException e) {
             System.out.println("Error: " + e);
         }
+    }
+    
+    public static void part2(){
+        try {
+            File f = new File("src\\adventofcodeday1\\input");
+            Scanner s = new Scanner(f);
+            int sum = 0;
+            int fuel;
+            int mass;
+            //read in all masses from the file
+            while (s.hasNextLine()) {
+                mass = Integer.parseInt(s.nextLine());
+                //calculate the fuel required for this module and add it to the total
+                fuel = (mass / 3) - 2;                
+                while(fuel > 0){
+                    sum+= fuel;
+                    //see if we need to add additional fuel for this fuel
+                    fuel = (fuel / 3) - 2;
+                }
+            }
+            //final amount of fuel required
+            System.out.println("Total: " + sum);
+        } catch (FileNotFoundException e) {
+            System.out.println("Error: " + e);
+        }
+    }
+    
+    public static void main(String[] args) {
+        part2();
     }
 
 }
